@@ -5,9 +5,8 @@ import { TuiButtonModule } from '@taiga-ui/core';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [ CommonModule, TuiButtonModule,
-  ],
+  imports: [CommonModule, TuiButtonModule],
   templateUrl: './navbar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavbarComponent { }
+export class NavbarComponent {}

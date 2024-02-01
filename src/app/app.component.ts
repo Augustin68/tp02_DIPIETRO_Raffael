@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ClientFormComponent } from './components/client-form/client-form.component';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ import { FooterComponent } from './components/footer/footer.component';
     TuiAlertModule,
     NavbarComponent,
     FooterComponent,
+    ClientFormComponent,
   ],
   templateUrl: './app.component.html',
   providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
