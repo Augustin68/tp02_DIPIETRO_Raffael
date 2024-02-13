@@ -4,19 +4,25 @@ import {
   FormControl,
   FormGroup,
   FormsModule,
-  ReactiveFormsModule,
+  ReactiveFormsModule
 } from '@angular/forms';
-import { TuiInputModule } from '@taiga-ui/kit';
+import { TuiInputModule, TuiInputPasswordModule } from '@taiga-ui/kit';
 
 @Component({
-  selector: 'app-client-form',
+  selector: 'app-user-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, TuiInputModule],
-  templateUrl: './client-form.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TuiInputModule,
+    TuiInputPasswordModule
+  ],
+  templateUrl: './user-form.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ClientFormComponent implements OnInit {
-  clientForm = new FormGroup({
+export class UserFormComponent implements OnInit {
+  userForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
     adresse: new FormControl(''),
@@ -28,11 +34,11 @@ export class ClientFormComponent implements OnInit {
     gender: new FormControl(''),
     login: new FormControl(''),
     password: new FormControl(''),
-    passwordConfirm: new FormControl(''),
+    passwordConfirm: new FormControl('')
   });
 
   ngOnInit(): void {
-    this.clientForm.valueChanges.subscribe(value => {
+    this.userForm.valueChanges.subscribe((value) => {
       console.log(value);
     });
   }

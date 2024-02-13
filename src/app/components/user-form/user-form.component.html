@@ -1,0 +1,27 @@
+<form [formGroup]="userForm">
+  <!-- Informations perso -->
+  <tui-input formControlName="firstName" tuiTextfieldSize="s">Prénom</tui-input>
+  <tui-input formControlName="lastName" tuiTextfieldSize="s">Nom</tui-input>
+  <tui-input formControlName="gender" tuiTextfieldSize="s">Genre</tui-input>
+  <tui-input formControlName="email" tuiTextfieldSize="s">Email</tui-input>
+  <tui-input formControlName="phone" tuiTextfieldSize="s">
+    Numéro de téléphone
+  </tui-input>
+  <!-- Adresse -->
+  <tui-input formControlName="country" tuiTextfieldSize="s">Pays</tui-input>
+  <tui-input formControlName="zipCode" tuiTextfieldSize="s">
+    Code postale
+  </tui-input>
+  <tui-input formControlName="city" tuiTextfieldSize="s">Ville</tui-input>
+  <tui-input formControlName="adresse" tuiTextfieldSize="s">Adresse</tui-input>
+  <!-- Connexion -->
+  <tui-input formControlName="login" tuiTextfieldSize="s">
+    Identifiant
+  </tui-input>
+  <tui-input-password formControlName="password" tuiTextfieldSize="s">
+    Mot de passe
+  </tui-input-password>
+  <tui-input-password formControlName="passwordConfirm" tuiTextfieldSize="s">
+    Confirmer le mot de passe
+  </tui-input-password>
+</form>

@@ -3,13 +3,13 @@ import {
   TuiRootModule,
   TuiDialogModule,
   TuiAlertModule,
-  TUI_SANITIZER,
+  TUI_SANITIZER
 } from '@taiga-ui/core';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { ClientFormComponent } from './components/client-form/client-form.component';
+import { UserFormComponent } from './components/user-form/user-form.component';
 
 @Component({
   selector: 'app-root',
@@ -21,10 +21,10 @@ import { ClientFormComponent } from './components/client-form/client-form.compon
     TuiAlertModule,
     NavbarComponent,
     FooterComponent,
-    ClientFormComponent,
+    UserFormComponent
   ],
   templateUrl: './app.component.html',
-  providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
+  providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }]
 })
 export class AppComponent {
   title = 'patate';
