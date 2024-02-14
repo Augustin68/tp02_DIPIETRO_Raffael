@@ -6,7 +6,15 @@ import {
   FormsModule,
   ReactiveFormsModule
 } from '@angular/forms';
-import { TuiInputModule, TuiInputPasswordModule } from '@taiga-ui/kit';
+import {
+  TuiInputModule,
+  TuiInputPasswordModule,
+  TuiInputPhoneInternationalModule,
+  TuiSortCountriesPipeModule,
+  TuiStepperModule
+} from '@taiga-ui/kit';
+import { UserFormStep } from './user-form-step.enum';
+import { TuiCountryIsoCode } from '@taiga-ui/i18n';
 
 @Component({
   selector: 'app-user-form',
@@ -16,7 +24,10 @@ import { TuiInputModule, TuiInputPasswordModule } from '@taiga-ui/kit';
     FormsModule,
     ReactiveFormsModule,
     TuiInputModule,
-    TuiInputPasswordModule
+    TuiInputPasswordModule,
+    TuiInputPhoneInternationalModule,
+    TuiSortCountriesPipeModule,
+    TuiStepperModule
   ],
   templateUrl: './user-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -36,6 +47,12 @@ export class UserFormComponent implements OnInit {
     password: new FormControl(''),
     passwordConfirm: new FormControl('')
   });
+
+  formStep = UserFormStep.info;
+  countryIsoCode = TuiCountryIsoCode.FR;
+
+  readonly UserFormStep = UserFormStep;
+  readonly countries = Object.values(TuiCountryIsoCode);
 
   ngOnInit(): void {
     this.userForm.valueChanges.subscribe((value) => {
