@@ -2443,6 +2443,28 @@
   dependencies:
     argparse "^2.0.1"
 
+"@zxcvbn-ts/core@^3.0.0":
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/@zxcvbn-ts/core/-/core-3.0.4.tgz#c5bde72235eb6c273cec78b672bb47c0d7045cad"
+  integrity sha512-aQeiT0F09FuJaAqNrxynlAwZ2mW/1MdXakKWNmGM1Qp/VaY6CnB/GfnMS2T8gB2231Esp1/maCWd8vTG4OuShw==
+  dependencies:
+    fastest-levenshtein "1.0.16"
+
+"@zxcvbn-ts/language-common@^3.0.4":
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/@zxcvbn-ts/language-common/-/language-common-3.0.4.tgz#fa1d2a42f8c8a589555859795da90d6b8027b7c4"
+  integrity sha512-viSNNnRYtc7ULXzxrQIVUNwHAPSXRtoIwy/Tq4XQQdIknBzw4vz36lQLF6mvhMlTIlpjoN/Z1GFu/fwiAlUSsw==
+
+"@zxcvbn-ts/language-en@^3.0.0":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@zxcvbn-ts/language-en/-/language-en-3.0.2.tgz#162ada6b2b556444efd5a7700e70845cfde6d6ec"
+  integrity sha512-Zp+zL+I6Un2Bj0tRXNs6VUBq3Djt+hwTwUz4dkt2qgsQz47U0/XthZ4ULrT/RxjwJRl5LwiaKOOZeOtmixHnjg==
+
+"@zxcvbn-ts/language-fr@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@zxcvbn-ts/language-fr/-/language-fr-3.0.2.tgz#79c5f0475fd388502f04f5560456db37dc0dde35"
+  integrity sha512-Tj9jS/Z8mNBAD21pn8Mp4O86CPrwImysO1fM3DG+fsfk8W79/MDzqpFDBHiqpu69Uo3LPPctMHEEteakFWt4Qg==
+
 abbrev@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/abbrev/-/abbrev-2.0.0.tgz"
@@ -2532,6 +2554,13 @@ ajv@^6.12.4, ajv@^6.12.5:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
+
+angular-password-strength-meter@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/angular-password-strength-meter/-/angular-password-strength-meter-11.0.0.tgz#2fb03617e9d1882c580ea08e1e88f90641eb9ba0"
+  integrity sha512-u7/gTO6FSWT05wdpaGjsP1ZwYiZf7TLKphThdHTAIj5OkZuNW8zz/LdJOgVY1JIHLwOFZ8MtSHG0CInvGoMVaA==
+  dependencies:
+    tslib "^2.5.0"
 
 ansi-colors@4.1.3, ansi-colors@^4.1.1:
   version "4.1.3"
@@ -3935,6 +3964,11 @@ fast-levenshtein@^2.0.6:
   version "2.0.6"
   resolved "https://registry.npmjs.org/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz"
   integrity sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==
+
+fastest-levenshtein@1.0.16:
+  version "1.0.16"
+  resolved "https://registry.yarnpkg.com/fastest-levenshtein/-/fastest-levenshtein-1.0.16.tgz#210e61b6ff181de91ea9b3d1b84fdedd47e034e5"
+  integrity sha512-eRnCtTTtGZFpQCwhJiUOuxPQWRXVKYDn0b2PeHfXL6/Zi53SLAzAHfVhVWK2AryC/WH05kGfxhFIPvTF0SXQzg==
 
 fastq@^1.6.0:
   version "1.17.0"
@@ -7236,7 +7270,7 @@ tsconfig-paths@^4.1.2:
     minimist "^1.2.6"
     strip-bom "^3.0.0"
 
-tslib@2.6.2, tslib@^2.0.0, tslib@^2.1.0, tslib@^2.2.0, tslib@^2.3.0, tslib@^2.4.0, tslib@^2.6.2:
+tslib@2.6.2, tslib@^2.0.0, tslib@^2.1.0, tslib@^2.2.0, tslib@^2.3.0, tslib@^2.4.0, tslib@^2.5.0, tslib@^2.6.2:
   version "2.6.2"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.6.2.tgz"
   integrity sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==

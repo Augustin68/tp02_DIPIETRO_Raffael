@@ -1,10 +1,11 @@
 import {
   AbstractControl,
-  FormControl,
+  AsyncValidatorFn,
   ValidationErrors,
   ValidatorFn,
   Validators
 } from '@angular/forms';
+import { BehaviorSubject, Observable, map, take } from 'rxjs';
 
 export class CustomValidators extends Validators {
   constructor() {
@@ -40,5 +41,17 @@ export class CustomValidators extends Validators {
       return password.value === passwordConfirm.value
         ? null
         : { passwordMatch: true };
+    };
+
+  static passwordEntropy$ =
+    (passwordStrength$: BehaviorSubject<number>): AsyncValidatorFn =>
+    (): Observable<ValidationErrors | null> => {
+      return passwordStrength$.pipe(
+        take(1),
+        map((strength) => {
+          const response = strength < 3 ? { passwordEntropy: true } : null;
+          return response;
+        })
+      );
     };
 }

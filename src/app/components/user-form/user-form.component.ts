@@ -1,11 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   FormsModule,
-  ReactiveFormsModule,
-  Validators
+  ReactiveFormsModule
 } from '@angular/forms';
 import {
   TUI_VALIDATION_ERRORS,
@@ -20,13 +19,14 @@ import {
 } from '@taiga-ui/kit';
 import { UserFormStep } from './user-form-step.enum';
 import { TuiCountryIsoCode } from '@taiga-ui/i18n';
-import { of } from 'rxjs';
 import {
   TuiButtonModule,
   TuiDataListModule,
   TuiErrorModule
 } from '@taiga-ui/core';
 import { CustomValidators } from './customValidators';
+import { PasswordStrengthMeterComponent } from 'angular-password-strength-meter';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-user-form',
@@ -45,7 +45,8 @@ import { CustomValidators } from './customValidators';
     TuiButtonModule,
     TuiSelectModule,
     TuiDataListModule,
-    TuiDataListWrapperModule
+    TuiDataListWrapperModule,
+    PasswordStrengthMeterComponent
   ],
   providers: [
     {
@@ -62,7 +63,8 @@ import { CustomValidators } from './customValidators';
           `Longueur minimale — ${requiredLength} caractères`,
         zipCode: 'Code postal invalide',
         pattern: 'Format invalide',
-        passwordMatch: 'Les mots de passe ne correspondent pas'
+        passwordMatch: 'Les mots de passe ne correspondent pas',
+        passwordEntropy: 'Le mot de passe est trop faible'
       }
     }
   ],
@@ -70,6 +72,15 @@ import { CustomValidators } from './customValidators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserFormComponent {
+  formStep = UserFormStep.register;
+  genders = ['Homme', 'Femme', 'Autre'];
+  countryIsoCode = TuiCountryIsoCode.FR;
+
+  readonly UserFormStep = UserFormStep;
+  readonly countries = Object.values(TuiCountryIsoCode);
+
+  passwordStrength$ = new BehaviorSubject<number>(0);
+
   private infoForm = new FormGroup({
     firstName: new FormControl('', [
       CustomValidators.required,
@@ -123,7 +134,11 @@ export class UserFormComponent {
         CustomValidators.minLength(2),
         CustomValidators.maxLength(50)
       ]),
-      password: new FormControl('', [CustomValidators.required]),
+      password: new FormControl(
+        '',
+        [CustomValidators.required],
+        [CustomValidators.passwordEntropy$(this.passwordStrength$)]
+      ),
       passwordConfirm: new FormControl('', [CustomValidators.required])
     },
     {
@@ -136,13 +151,6 @@ export class UserFormComponent {
     [UserFormStep.address]: this.addressForm,
     [UserFormStep.register]: this.registerForm
   };
-
-  formStep = UserFormStep.register;
-  genders = ['Homme', 'Femme', 'Autre'];
-  countryIsoCode = TuiCountryIsoCode.FR;
-
-  readonly UserFormStep = UserFormStep;
-  readonly countries = Object.values(TuiCountryIsoCode);
 
   nextStep(): void {
     if (this.userForm[this.formStep].invalid) {

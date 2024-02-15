@@ -99,10 +99,15 @@
     <tui-input-password formControlName="password" tuiTextfieldSize="s">
       Mot de passe
     </tui-input-password>
+    <password-strength-meter
+      *ngIf="userForm[UserFormStep.register].get('password')?.value as password"
+      [password]="password"
+      enableFeedback
+      enableAsync
+      (strengthChange)="passwordStrength$.next($event || 0)" />
     <tui-error
       formControlName="password"
       [error]="[] | tuiFieldError | async"></tui-error>
-
     <tui-input-password formControlName="passwordConfirm" tuiTextfieldSize="s">
       Confirmer le mot de passe
     </tui-input-password>
