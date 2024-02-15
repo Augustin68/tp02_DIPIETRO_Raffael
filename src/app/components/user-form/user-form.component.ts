@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Output
+} from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -27,6 +32,7 @@ import {
 import { CustomValidators } from './customValidators';
 import { PasswordStrengthMeterComponent } from 'angular-password-strength-meter';
 import { BehaviorSubject } from 'rxjs';
+import { CreateUser } from '../../models/create-user.type';
 
 @Component({
   selector: 'app-user-form',
@@ -72,7 +78,9 @@ import { BehaviorSubject } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserFormComponent {
-  formStep = UserFormStep.register;
+  @Output() userCreated = new EventEmitter<CreateUser>();
+
+  formStep = UserFormStep.info;
   genders = ['Homme', 'Femme', 'Autre'];
   countryIsoCode = TuiCountryIsoCode.FR;
 
@@ -104,7 +112,7 @@ export class UserFormComponent {
   });
 
   private addressForm = new FormGroup({
-    adresse: new FormControl('', [
+    address: new FormControl('', [
       CustomValidators.required,
       CustomValidators.minLength(2),
       CustomValidators.maxLength(100)
@@ -163,10 +171,19 @@ export class UserFormComponent {
     } else if (this.formStep === UserFormStep.address) {
       this.formStep = UserFormStep.register;
     } else if (this.formStep === UserFormStep.register) {
-      console.log('Submitted');
+      this.confirmCreation();
       console.log(this.userForm[UserFormStep.info].value);
       console.log(this.userForm[UserFormStep.address].value);
       console.log(this.userForm[UserFormStep.register].value);
     }
+  }
+
+  private confirmCreation(): void {
+    const user = {
+      ...this.userForm[UserFormStep.info].value,
+      ...this.userForm[UserFormStep.address].value,
+      ...this.userForm[UserFormStep.register].value
+    };
+    this.userCreated.emit(user as CreateUser);
   }
 }

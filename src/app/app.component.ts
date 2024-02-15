@@ -10,11 +10,15 @@ import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
+import { BehaviorSubject } from 'rxjs';
+import { CreateUser } from './models/create-user.type';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
+    CommonModule,
     RouterOutlet,
     TuiRootModule,
     TuiDialogModule,
@@ -27,5 +31,5 @@ import { UserFormComponent } from './components/user-form/user-form.component';
   providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }]
 })
 export class AppComponent {
-  title = 'patate';
+  user$ = new BehaviorSubject<CreateUser | null>(null);
 }
