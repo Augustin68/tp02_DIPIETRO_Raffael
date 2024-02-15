@@ -4,7 +4,9 @@
       Informations personnelles
     </button>
     <button tuiStep [disabled]="formStep <= 1">Adresse</button>
-    <button tuiStep [disabled]="formStep <= 2">Connexion</button>
+    <button tuiStep [disabled]="formStep <= 2">
+      Informations de connexion
+    </button>
   </tui-stepper>
 
   <!-- Informations perso -->
@@ -105,7 +107,7 @@
       Confirmer le mot de passe
     </tui-input-password>
     <tui-error
-      formControlName="passwordConfirm"
+      [formGroup]="userForm[UserFormStep.register]"
       [error]="[] | tuiFieldError | async"></tui-error>
   </form>
   }

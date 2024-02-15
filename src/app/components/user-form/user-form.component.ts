@@ -61,7 +61,8 @@ import { CustomValidators } from './customValidators';
         minlength: ({ requiredLength }: { requiredLength: string }) =>
           `Longueur minimale — ${requiredLength} caractères`,
         zipCode: 'Code postal invalide',
-        pattern: 'Format invalide'
+        pattern: 'Format invalide',
+        passwordMatch: 'Les mots de passe ne correspondent pas'
       }
     }
   ],
@@ -115,15 +116,20 @@ export class UserFormComponent {
     ])
   });
 
-  private registerForm = new FormGroup({
-    login: new FormControl('', [
-      CustomValidators.required,
-      CustomValidators.minLength(2),
-      CustomValidators.maxLength(50)
-    ]),
-    password: new FormControl(''),
-    passwordConfirm: new FormControl('')
-  });
+  private registerForm = new FormGroup(
+    {
+      login: new FormControl('', [
+        CustomValidators.required,
+        CustomValidators.minLength(2),
+        CustomValidators.maxLength(50)
+      ]),
+      password: new FormControl('', [CustomValidators.required]),
+      passwordConfirm: new FormControl('', [CustomValidators.required])
+    },
+    {
+      validators: CustomValidators.passwordMatch('password', 'passwordConfirm')
+    }
+  );
 
   userForm = {
     [UserFormStep.info]: this.infoForm,
@@ -131,7 +137,7 @@ export class UserFormComponent {
     [UserFormStep.register]: this.registerForm
   };
 
-  formStep = UserFormStep.info;
+  formStep = UserFormStep.register;
   genders = ['Homme', 'Femme', 'Autre'];
   countryIsoCode = TuiCountryIsoCode.FR;
 
