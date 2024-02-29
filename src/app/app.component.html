@@ -1,9 +1,5 @@
 <tui-root>
   <app-navbar />
-  <div class="w-[60rem]">
-    <app-user-form (userCreated)="user$.next($event)" />
-  </div>
-  <p *ngIf="(user$ | async) as user">{{ user | json }}</p>
   <router-outlet />
   <app-footer />
 </tui-root>

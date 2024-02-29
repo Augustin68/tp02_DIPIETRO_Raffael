@@ -21,11 +21,8 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     RouterOutlet,
     TuiRootModule,
-    TuiDialogModule,
-    TuiAlertModule,
     NavbarComponent,
-    FooterComponent,
-    UserFormComponent
+    FooterComponent
   ],
   templateUrl: './app.component.html',
   providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }]
